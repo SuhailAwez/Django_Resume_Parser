@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resume Parser</title>
+</head>
+<body>
+    <h1>Upload Resume</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="resume" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if data %}
+        <h2>Extracted Data</h2>
+        <ul>
+            <li><strong>Name:</strong> {{ data.Name }}</li>
+            <li><strong>Contact Number:</strong> {{ data.Contact_Number }}</li>
+            <li><strong>Email:</strong> {{ data.Email }}</li>
+            <li><strong>Skills:</strong> {{ data.Skills|join:", " }}</li>
+            <li><strong>Education:</strong> {{ data.Education|join:", " }}</li>
+        </ul>
+    {% endif %}
+</body>
+</html>
